@@ -1,0 +1,3 @@
+2026-09-18 14:31:20.606972+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "RESTAURANT" not found (this database is empty); SQL statement:
+select r1_0.id,r1_0.address,r1_0.name from restaurant r1_0 where r1_0.id=? [42104-240]
