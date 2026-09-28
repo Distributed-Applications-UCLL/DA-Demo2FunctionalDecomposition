@@ -1,6 +1,7 @@
 package be.ucll.customerservice.api;
 
 import be.ucll.customerservice.business.CustomerService;
+import be.ucll.customerservice.business.CustomerServiceInterface;
 import be.ucll.customerservice.persistence.Customer;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +11,9 @@ import java.util.List;
 @RequestMapping("/customers")
 public class CustomerController {
 
-    private final CustomerService customerService;
+    private final CustomerServiceInterface customerService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerServiceInterface customerService) {
         this.customerService = customerService;
     }
 

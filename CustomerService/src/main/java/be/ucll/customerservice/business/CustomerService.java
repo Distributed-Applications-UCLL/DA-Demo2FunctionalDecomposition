@@ -1,6 +1,7 @@
 package be.ucll.customerservice.business;
 
 
+import be.ucll.customerservice.adapter.PersistenceAdapterInterface;
 import be.ucll.customerservice.persistence.Customer;
 import be.ucll.customerservice.persistence.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -8,26 +9,25 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CustomerService {
+public class CustomerService implements CustomerServiceInterface{
 
-    private final CustomerRepository customerRepository;
+    private final PersistenceAdapterInterface pai;
 
     //@Autowired
-    public CustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public CustomerService(PersistenceAdapterInterface pai) {
+        this.pai = pai;
     }
 
     public List<Customer> findAll() {
-        return customerRepository.findAll();
+        return pai.findAll();
     }
 
     public Customer findById(Long id) {
-        return customerRepository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Customer not found: " + id));
+        return pai.findById(id);
+
     }
 
     public Customer save(Customer customer) {
-        return customerRepository.save(customer);
+        return pai.save(customer);
     }
 }
